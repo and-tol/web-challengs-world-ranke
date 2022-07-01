@@ -1,5 +1,5 @@
 import { GetServerSideProps, NextPage } from 'next';
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useId, useState } from 'react';
 
 import { DataType } from 'types/dataType';
 
@@ -15,7 +15,7 @@ interface PropsType {
 }
 
 const CountryPage: NextPage<PropsType> = ({ country }): ReactElement => {
-    // console.log(country)
+    const id = useId();
     const [borders, setBorders] = useState<DataType[][] | undefined | void>([])
 
     // const borders = country?.borders?.map(b => b).join(', ') ?? 'No border countries'
@@ -99,7 +99,7 @@ const CountryPage: NextPage<PropsType> = ({ country }): ReactElement => {
                                 <>
                                     { borders && Boolean(borders?.length) && borders?.map(b => {
                                         return (
-                                            <div className={ styles.details_panel_borders__country }>
+                                            <div key={id} className={ styles.details_panel_borders__country }>
                                                 <img src={ b[0].flags?.svg } alt={ b[0].name.common } />
                                                 <div>{ b[0].name.common }</div>
                                             </div>
@@ -108,7 +108,6 @@ const CountryPage: NextPage<PropsType> = ({ country }): ReactElement => {
                                 </>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
