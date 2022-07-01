@@ -29,6 +29,14 @@
     color: var(--secondary-text-color)
 }
 
+.overview_numbers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 16px;
+    gap: 16px;
+    text-align: center;
+}
+
 .details_panel {
     background-color: var(--background-color-light);
     box-shadow: var(--box-shadow);
